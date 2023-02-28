@@ -20,6 +20,15 @@ public class CommunicateWithYarn : MonoBehaviour
         characters.Add("cube", charPrefab);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            dialogueRunner.Dialogue.Stop(); //to change node in mid running you first stop it
+            dialogueRunner.StartDialogue("SecondConversation"); //to start a new dialogue script
+        }
+    }
+
     // Update is called once per frame
     void GetNumber(int i)
     {
@@ -38,6 +47,8 @@ public class CommunicateWithYarn : MonoBehaviour
     {
         Debug.Log("doing " + thing);
     }
+
+
 
     //to play a specific text node: 
     /*if (player presses SPACE)
