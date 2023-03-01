@@ -1,7 +1,8 @@
 ﻿title: Start
 tags:
 ---
-<<spawnChar cube locationplace>>
+<<spawnChar Player Location1>>
+<<camera Location1>>
 Hello Player!
 Welcome to the adventure that will change your future!
 Or not!
@@ -20,6 +21,7 @@ And don't forget the popcorn!!!!
 
 title: Butter
 ---
+    
 You killed of your roommates because of a huge fart!
     <<something ComunicatorWithYarn burying>>
 ->Bury the corpses
