@@ -10,8 +10,17 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 053561912b1654d80a424bb0696a74ae, type: 3}
   sourceScripts:
   - {fileID: 6391573757903218779, guid: 38d493ef12dae2f498a5ce19004f7f62, type: 3}
+  - {fileID: 6391573757903218779, guid: 10fdfcaba8f7828458d5b25b333c395c, type: 3}
   compileErrors: []
-  serializedDeclarations: []
+  serializedDeclarations:
+  - name: $stupidness
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: Implicitly declared in NewYarnScript.yarn, node Hide
+    isImplicit: 1
+    sourceYarnAsset: {fileID: 6391573757903218779, guid: 38d493ef12dae2f498a5ce19004f7f62, type: 3}
   defaultLanguage: es-ES
   languagesToSourceAssets: []
   useAddressableAssets: 0
