@@ -12,7 +12,12 @@ public class InteractablePuzzle : MonoBehaviour
     {
         if (objName == requiredObject.name)
         {
+            Debug.Log("puzzle resolved");
             resolved= true;
+        }
+        else
+        {
+            Debug.Log("wrong object, puzzle not resolved");
         }
     }
 

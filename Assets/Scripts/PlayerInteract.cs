@@ -7,7 +7,7 @@ public class PlayerInteract : MonoBehaviour
     //make the player able to interact with interactable puzzles if holding the right object
     GameObject holdingObject;
     GameObject closestInteractale;
-    float minInteractDistance = 2f;
+    float minInteractDistance = 10f;
 
     private void Update()
     {
@@ -15,9 +15,19 @@ public class PlayerInteract : MonoBehaviour
         {
             if (holdingObject) //requires a script to pick up objects
             {
+                if (FindClosestInteractable() == null)
+                {
+                    Debug.Log("Not interactable found");
+                    return;
+                }
                 if (FindClosestInteractable().TryGetComponent(out InteractablePuzzle puzzle))
                 {
                     puzzle.Interact(holdingObject.name);
+                    Debug.Log("interacting with " + FindClosestInteractable().name);
+                }
+                else
+                {
+                    Debug.Log("no component found");
                 }
             }
         }
@@ -25,10 +35,11 @@ public class PlayerInteract : MonoBehaviour
 
     GameObject FindClosestInteractable()
     {
-        GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
+        List<GameObject> interactables = new List<GameObject>();
+        interactables.AddRange(GameObject.FindGameObjectsWithTag("Interactable"));
         GameObject closest = null;
         float distance = minInteractDistance;
-        for (int i = 0; i < interactables.Length; i++)
+        for (int i = 0; i < interactables.Count; i++)
         {
             if ((interactables[i].transform.position - transform.position).magnitude < distance)
             {
@@ -36,5 +47,18 @@ public class PlayerInteract : MonoBehaviour
             }
         }
         return closest;
+    }
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Pickable"))
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                holdingObject = other.gameObject;
+                Debug.Log("Holding " + holdingObject.name);
+            }
+        }
     }
 }
