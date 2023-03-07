@@ -58,9 +58,10 @@ public class Movement2D : MonoBehaviour
                 }
                 else if (hit.collider.tag == "Interactable")
                 {
+                    Debug.Log("clicked an interactable");
                     clickedPoint = hit.point;
-                    goalPosition = new Vector3(clickedPoint.x, clickedPoint.y + 1f, clickedPoint.z);
-                    goalPosition -= hit.collider.bounds.size;
+                    goalPosition = hit.collider.GetComponent<InteractablePuzzle>().moveToPosition.position;
+ 
                     moving = true;
                     interacting = true;
                     interactingObject = hit.collider.gameObject;
