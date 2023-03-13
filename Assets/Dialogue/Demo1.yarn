@@ -1,10 +1,10 @@
-﻿title: Start
+title: Start
 tags:
 ---
 
 <<camera 1>>
-Hello player! Welcome to the test! (Eii k pasa)
-We are now finding ourselves in the first room (Tamos po'l sitio uno)
+Hello player! Welcome to the test!
+We are now finding ourselves in the first room
 -> Nice!
     <<jump Conversation1>>
 -> Very Nice!
@@ -16,7 +16,7 @@ We are now finding ourselves in the first room (Tamos po'l sitio uno)
 title: Conversation1
 ---
 <<camera 2>>
-From this moment you can change scenaries with the number keys and click any object in them
+From this moment you can change scenaries with the number keys.
 If that is too complicated for you, do not worry, i have the solution!
     <<jump SelectScene>>
 ===

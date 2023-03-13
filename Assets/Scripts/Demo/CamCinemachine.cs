@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,9 @@ public class CamCinemachine : MonoBehaviour
     DialogueRunner dialogueRunner;
 
     int camUsing = 1;
+
+    float roomZoom = -50f;
+    float objectZoom = -20f;
 
     private void Awake()
     {
@@ -45,16 +49,20 @@ public class CamCinemachine : MonoBehaviour
         if (camNum == 1)
         {
             cinemachine.LookAt = firstCam1Focus;
+            //cinemachine.Follow = firstCam1Focus;
             cinemachine.Priority = 11;
             cinemachine2.Priority = 10;
             camUsing = 1;
+            cinemachine.gameObject.transform.position = new Vector3(cinemachine.gameObject.transform.position.x, cinemachine.gameObject.transform.position.y, roomZoom);
         }
         else if (camNum == 2)
         {
             cinemachine2.LookAt = firstCam2Focus;
+            //cinemachine2.Follow = firstCam2Focus;
             cinemachine.Priority = 10;
             cinemachine2.Priority = 11;
             camUsing= 2;
+            cinemachine2.gameObject.transform.position = new Vector3(cinemachine2.gameObject.transform.position.x, cinemachine2.gameObject.transform.position.y, roomZoom);
         }
     }
 
@@ -68,11 +76,23 @@ public class CamCinemachine : MonoBehaviour
             {
                 if (camUsing == 1)
                 {
-                    cinemachine.LookAt = hit.collider.transform;
+                    cinemachine.LookAt = hit.transform;
+                    //cinemachine.Follow = hit.transform;
+                    cinemachine.gameObject.transform.position = new Vector3(cinemachine.gameObject.transform.position.x, cinemachine.gameObject.transform.position.y, objectZoom);
+                    //if (hit.transform.TryGetComponent(out DemoInteractable interactable))
+                    //{
+                    //    interactable.Interact();
+                    //}
                 }
                 if (camUsing == 2)
                 {
-                    cinemachine2.LookAt= hit.collider.transform;
+                    cinemachine2.LookAt= hit.transform;
+                    //cinemachine2.Follow = hit.transform;
+                    cinemachine2.gameObject.transform.position = new Vector3(cinemachine2.gameObject.transform.position.x, cinemachine2.gameObject.transform.position.y, objectZoom);
+                    //if (hit.transform.TryGetComponent(out DemoInteractable interactable))
+                    //{
+                    //    interactable.Interact();
+                    //}
                 }
             }
         }
