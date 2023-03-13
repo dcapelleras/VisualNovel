@@ -7,6 +7,7 @@ TagManager:
   - Interactable
   - Pickable
   - Walkable
+  - Scientist
   layers:
   - Default
   - TransparentFX

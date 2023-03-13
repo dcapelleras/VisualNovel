@@ -3,30 +3,51 @@ tags:
 ---
 
 <<camera 1>>
-Hello player! Welcome to the test!
+Hello Hilen! Welcome to the test!
 We are now finding ourselves in the first room
 -> Nice!
     <<jump Conversation1>>
 -> Very Nice!
     <<jump Conversation1>>
 -> No entiendo nah
-    <<jump Conversation1>>
+    <<jump Conversation1ESP>>
 ===
 
 title: Conversation1
 ---
 <<camera 2>>
-From this moment you can change scenaries with the number keys.
+You can click the objects in the room to interact with them and pick them up to your inventory.
+You can change scenaries with the number keys.
 If that is too complicated for you, do not worry, i have the solution!
     <<jump SelectScene>>
+===
+title: Conversation1ESP
+---
+<<camera 2>>
+Puedes pulsar los objetos en la sala para interactuar con ellos y guardarlos en el inventario.
+Puedes cambiar entre escenarios con los numeros del teclado.
+Tranquilos, si es muy complicado te pongo botones para hacerlo más simple!
+    <<jump SelectSceneESP>>
 ===
 
 title: SelectScene
 ---
--> Go to the first scenary
+Remember, you can click the items to pick them up.
+-> First scenary
     <<camera 1>>
     <<jump SelectScene>>
--> Go to the second scenary
+-> Second scenary
     <<camera 2>>
     <<jump SelectScene>>
+===
+
+title: SelectSceneESP
+---
+Acordaos, se pueden pulsar los objetos para recogerlos.
+-> Primer escenario
+    <<camera 1>>
+    <<jump SelectSceneESP>>
+-> Segundo escenario
+    <<camera 2>>
+    <<jump SelectSceneESP>>
 ===

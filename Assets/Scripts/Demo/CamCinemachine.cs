@@ -20,6 +20,9 @@ public class CamCinemachine : MonoBehaviour
     float roomZoom = -50f;
     float objectZoom = -20f;
 
+    [SerializeField] DemoPlayer player1;
+    [SerializeField] DemoPlayer player2;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -48,6 +51,8 @@ public class CamCinemachine : MonoBehaviour
     {
         if (camNum == 1)
         {
+            player1.usingThisCharacter = true;
+            player2.usingThisCharacter = false;
             cinemachine.LookAt = firstCam1Focus;
             //cinemachine.Follow = firstCam1Focus;
             cinemachine.Priority = 11;
@@ -57,6 +62,8 @@ public class CamCinemachine : MonoBehaviour
         }
         else if (camNum == 2)
         {
+            player1.usingThisCharacter = false;
+            player2.usingThisCharacter = true;
             cinemachine2.LookAt = firstCam2Focus;
             //cinemachine2.Follow = firstCam2Focus;
             cinemachine.Priority = 10;
@@ -76,9 +83,9 @@ public class CamCinemachine : MonoBehaviour
             {
                 if (camUsing == 1)
                 {
-                    cinemachine.LookAt = hit.transform;
+                    //cinemachine.LookAt = hit.transform;
                     //cinemachine.Follow = hit.transform;
-                    cinemachine.gameObject.transform.position = new Vector3(cinemachine.gameObject.transform.position.x, cinemachine.gameObject.transform.position.y, objectZoom);
+                    //cinemachine.gameObject.transform.position = new Vector3(cinemachine.gameObject.transform.position.x, cinemachine.gameObject.transform.position.y, objectZoom);
                     //if (hit.transform.TryGetComponent(out DemoInteractable interactable))
                     //{
                     //    interactable.Interact();
@@ -86,9 +93,9 @@ public class CamCinemachine : MonoBehaviour
                 }
                 if (camUsing == 2)
                 {
-                    cinemachine2.LookAt= hit.transform;
+                    //cinemachine2.LookAt= hit.transform;
                     //cinemachine2.Follow = hit.transform;
-                    cinemachine2.gameObject.transform.position = new Vector3(cinemachine2.gameObject.transform.position.x, cinemachine2.gameObject.transform.position.y, objectZoom);
+                    //cinemachine2.gameObject.transform.position = new Vector3(cinemachine2.gameObject.transform.position.x, cinemachine2.gameObject.transform.position.y, objectZoom);
                     //if (hit.transform.TryGetComponent(out DemoInteractable interactable))
                     //{
                     //    interactable.Interact();
