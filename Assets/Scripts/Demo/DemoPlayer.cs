@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Yarn.Unity;
 
 public class DemoPlayer : MonoBehaviour
 {
@@ -13,17 +14,28 @@ public class DemoPlayer : MonoBehaviour
 
     Vector3 goalPosition;
 
-    public List<GameObject> inventoryItems = new List<GameObject>();
+    public InventoryBase inventory;
 
     GameObject pickingObject;
 
     GameObject interactingPerson;
 
+    Animator anim;
+
+    DialogueRunner dialogueRunner;
+
+    [SerializeField] GameObject player1;
+
 
     private void Awake()
     {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
         cam = Camera.main;
         goalPosition = transform.position;
+        if (TryGetComponent(out Animator animator))
+        {
+            anim = animator;
+        }
     }
 
     private void Update()
@@ -46,14 +58,17 @@ public class DemoPlayer : MonoBehaviour
         {
             if (interactingPerson.TryGetComponent(out DemoScientist scientist))
             {
-                scientist.CheckObject(inventoryItems);
+                scientist.CheckObject(inventory.inventoryItems);
                 interactingPerson = null;
             }
         }
         else if (pickingObject != null)
         {
             {
-                inventoryItems.Add(pickingObject);
+                if (!inventory.inventoryItems.Contains(pickingObject.name))
+                {
+                    inventory.inventoryItems.Add(pickingObject.name);
+                }
                 pickingObject.GetComponent<DemoInteractable>().Disappear();
                 pickingObject = null;
             }
@@ -82,7 +97,7 @@ public class DemoPlayer : MonoBehaviour
                 {
                     goalPosition = scientist.moveToPosition.position;
                     goalPosition.y += 2.7f;
-                    if (inventoryItems.Count > 0)
+                    if (inventory.inventoryItems.Count > 0)
                     {
                         interactingPerson = scientist.gameObject;
                         
@@ -93,6 +108,22 @@ public class DemoPlayer : MonoBehaviour
                     }
                 }
             }
+            else if (hit.collider.CompareTag("Portal"))
+            {
+                anim.Play("portalAnim");
+                dialogueRunner.Dialogue.Stop();
+                dialogueRunner.StartDialogue("MuertePorPortal");
+            }
         }
+    }
+
+    public void Disappear()
+    {
+        if (player1 != null)
+        {
+            player1.SetActive(false);
+        }
+        
+        gameObject.SetActive(false);
     }
 }

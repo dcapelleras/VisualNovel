@@ -17,7 +17,7 @@ public class CamCinemachine : MonoBehaviour
 
     int camUsing = 1;
 
-    float roomZoom = -50f;
+    [SerializeField] float roomZoom = -40f;
     float objectZoom = -20f;
 
     [SerializeField] DemoPlayer player1;
