@@ -73,7 +73,30 @@ public class DemoPlayer : MonoBehaviour
                 pickingObject = null;
             }
         }
+
+        if (Vector3.Distance(transform.position, stopPosition) > 0.1f)
+        {
+            //anim.SetBool("isRun", true);
+            if (stopPosition.x < transform.position.x)
+            {
+                anim.SetBool("runLeft", false);
+                anim.SetBool("runRight", true);
+            }
+            else
+            {
+                anim.SetBool("runRight", false);
+                anim.SetBool("runLeft", true);
+            }
+            
+        }
+        else
+        {
+            anim.SetBool("runLeft", false);
+            anim.SetBool("runRight", false);
+        }
     }
+
+
 
     void RayMouse()
     {
@@ -87,7 +110,7 @@ public class DemoPlayer : MonoBehaviour
                 {
                     interactable.Interact();
                     goalPosition = interactable.moveToPosition.position;
-                    goalPosition.y += 2.7f;
+                    //goalPosition.y += 2.7f;
                     pickingObject = hit.collider.gameObject;
                 }
             }
@@ -96,7 +119,7 @@ public class DemoPlayer : MonoBehaviour
                 if (hit.collider.TryGetComponent(out DemoScientist scientist))
                 {
                     goalPosition = scientist.moveToPosition.position;
-                    goalPosition.y += 2.7f;
+                    //goalPosition.y += 2.7f;
                     if (inventory.inventoryItems.Count > 0)
                     {
                         interactingPerson = scientist.gameObject;
