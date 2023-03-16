@@ -24,8 +24,21 @@ public class DemoPlayer : MonoBehaviour
 
     DialogueRunner dialogueRunner;
 
-    [SerializeField] GameObject player1;
+    [SerializeField] List<DemoPlayer> players = new List<DemoPlayer>();
 
+    [SerializeField] CamCinemachine camController;
+
+    public int playerIndex = 0;
+    public bool crossingDoor;
+
+    [SerializeField] Transform door1Position;
+    [SerializeField] Transform door2Position;
+
+    public Transform spawnPosition;
+
+    public bool doingPuzzle;
+
+    public string holdingObjectName;
 
     private void Awake()
     {
@@ -40,13 +53,28 @@ public class DemoPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (usingThisCharacter)
+        if (doingPuzzle) //si esta haciendo puzzle
         {
             if (Input.GetMouseButtonDown(0))
             {
-                RayMouse();
+                DoPuzzle();
+                return;
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                doingPuzzle = false;
+                camController.ZoomBackToRoom();
             }
         }
+        if (!usingThisCharacter)
+        {
+            return;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            RayMouse();
+        }
+
         Vector3 stopPosition = new Vector3(goalPosition.x, transform.position.y, goalPosition.z);
         if (Vector3.Distance(transform.position, stopPosition) > 0.1f)
         {
@@ -54,8 +82,35 @@ public class DemoPlayer : MonoBehaviour
             direction.Normalize();
             transform.Translate(direction * moveSpeed * Time.deltaTime);
         }
+        else if (crossingDoor)
+        {
+            pickingObject = null;
+            crossingDoor = false;
+
+
+            if (playerIndex == 0) //player1 pulsa puerta
+            {
+                players[1].transform.position = players[1].spawnPosition.position; //player 2 se va al spawn de player2
+                players[1].usingThisCharacter = true; //player 2 se activa
+                players[0].usingThisCharacter = false; //player 1 se desactiva
+                camController.CineChange(2);
+                players[1].enabled = true;
+                players[0].enabled = false;
+            }
+            else //player2 pulsa puerta
+            {
+                players[0].transform.position = players[0].spawnPosition.position; //player 1 se va al spawn de player1
+                players[0].usingThisCharacter = true; //player 1 se activa
+                players[1].usingThisCharacter = false; // player 2 se desactiva
+                camController.CineChange(1);
+                players[0].enabled = true;
+                players[1].enabled = false;
+            }
+            return;
+        }
         else if (interactingPerson != null)
         {
+            pickingObject = null;
             if (interactingPerson.TryGetComponent(out DemoScientist scientist))
             {
                 scientist.CheckObject(inventory.inventoryItems);
@@ -74,6 +129,7 @@ public class DemoPlayer : MonoBehaviour
             }
         }
 
+
         if (Vector3.Distance(transform.position, stopPosition) > 0.1f)
         {
             //anim.SetBool("isRun", true);
@@ -87,7 +143,7 @@ public class DemoPlayer : MonoBehaviour
                 anim.SetBool("runRight", false);
                 anim.SetBool("runLeft", true);
             }
-            
+
         }
         else
         {
@@ -96,7 +152,28 @@ public class DemoPlayer : MonoBehaviour
         }
     }
 
+    void DoPuzzle()
+    {
+        Debug.Log("Trying puzzle with a " + holdingObjectName);
+        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.TryGetComponent(out PuzzlePart part))
+            {
+                part.CheckObject(holdingObjectName);
+            }
+        }
+    }
 
+    public void SelectItem(string itemName) //con boton se activa, la funcion guarda el boton clicado
+    {
+        if (itemName != null && doingPuzzle)
+        {
+            holdingObjectName = itemName;
+        }
+
+    }
 
     void RayMouse()
     {
@@ -123,7 +200,7 @@ public class DemoPlayer : MonoBehaviour
                     if (inventory.inventoryItems.Count > 0)
                     {
                         interactingPerson = scientist.gameObject;
-                        
+
                     }
                     else
                     {
@@ -137,16 +214,35 @@ public class DemoPlayer : MonoBehaviour
                 dialogueRunner.Dialogue.Stop();
                 dialogueRunner.StartDialogue("MuertePorPortal");
             }
+            else if (hit.collider.CompareTag("Door"))
+            {
+                if (playerIndex == 0)
+                {
+                    goalPosition = door1Position.position;
+                }
+                else
+                {
+                    goalPosition = door2Position.position;
+                }
+                crossingDoor = true;
+                Debug.Log("Crossing door");
+            }
+            else if (hit.collider.CompareTag("Puzzle"))
+            {
+                Debug.Log("Focusing on puzzle");
+                doingPuzzle= true;
+                camController.ZoomOnPuzzle();
+            }
         }
     }
 
     public void Disappear()
     {
-        if (player1 != null)
-        {
-            player1.SetActive(false);
-        }
-        
+        players[0].gameObject.SetActive(false);
+
         gameObject.SetActive(false);
     }
 }
+
+
+

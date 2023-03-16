@@ -9,6 +9,8 @@ TagManager:
   - Walkable
   - Scientist
   - Portal
+  - Door
+  - Puzzle
   layers:
   - Default
   - TransparentFX

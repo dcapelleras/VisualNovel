@@ -13,10 +13,5 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   inventoryItems:
-  - Patata
   - Carbasso
-  - Boniato
-  - Ravioli
-  - Kiwi
-  - "Galeta d'aquelles que et donen a vegades amb el caf\xE8 que no conv\xE9 pero
-    flipa lo bona que est\xE0"
+  - Patata
