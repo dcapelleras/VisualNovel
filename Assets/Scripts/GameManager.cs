@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPausa;
     public GameObject exit;
     bool menuOpen;
+    public GameObject inventory;
 
     // Update is called once per frame
     void Update()
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                inventory.SetActive(true);
                 menuPausa.SetActive(true);
                 menuOpen = true;
             }
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         menuPausa.SetActive(false);
+        inventory.SetActive(false);
     }
 
     public void Exit() 

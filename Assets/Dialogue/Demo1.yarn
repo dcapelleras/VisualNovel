@@ -2,7 +2,7 @@ title: Start
 tags:
 ---
 
-<<camera 1>>
+
 Hello Person! Welcome to the demo! How are you?
 -> Four!
     <<jump Conversation1ESP>>

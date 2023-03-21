@@ -1,44 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 using Yarn.Unity;
 
-public class DemoPlayer : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    #region References
     Camera cam;
-
-    public bool usingThisCharacter = true;
-
-    [SerializeField] float moveSpeed = 10f;
-
-    Vector3 goalPosition;
-
-    public Inventory inventory;
-
-    GameObject pickingObject;
+    Animator anim;
+    DialogueRunner dialogueRunner;
+    [SerializeField] CamCinemachine camController;
+    [SerializeField] Inventory inventory;
+    [SerializeField] GameObject spritesInventory;
 
     GameObject interactingPerson;
-
-    Animator anim;
-
-    DialogueRunner dialogueRunner;
-
-    [SerializeField] List<DemoPlayer> players = new List<DemoPlayer>();
-
-    [SerializeField] CamCinemachine camController;
-
-    public int playerIndex = 0;
-    public bool crossingDoor;
-
     [SerializeField] Transform door1Position;
     [SerializeField] Transform door2Position;
-
+    [SerializeField] List<Player> players = new List<Player>();
     public Transform spawnPosition;
+    #endregion
 
-    public bool doingPuzzle;
+    #region statCheck
+    public bool usingThisCharacter = true;
+    public bool crossingDoor;
+    public bool doingPuzzle; 
+    Vector3 goalPosition;
+    public GameObject pickingObject;
+    #endregion
 
-    public string holdingObjectName;
+    #region thisInstance
+    [SerializeField] float moveSpeed = 10f;
+    public int playerIndex = 0;
+    #endregion
+
 
     private void Awake()
     {
@@ -53,6 +47,10 @@ public class DemoPlayer : MonoBehaviour
 
     private void Update()
     {
+        if (!usingThisCharacter)
+        {
+            return;
+        }
         if (doingPuzzle) //si esta haciendo puzzle
         {
             if (Input.GetMouseButtonDown(0))
@@ -66,10 +64,7 @@ public class DemoPlayer : MonoBehaviour
                 camController.ZoomBackToRoom();
             }
         }
-        if (!usingThisCharacter)
-        {
-            return;
-        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             RayMouse();
@@ -84,7 +79,7 @@ public class DemoPlayer : MonoBehaviour
         }
         else if (crossingDoor)
         {
-            pickingObject = null;
+            //pickingObject = null;
             crossingDoor = false;
 
 
@@ -110,16 +105,20 @@ public class DemoPlayer : MonoBehaviour
         }
         else if (interactingPerson != null)
         {
-            pickingObject = null;
-            if (interactingPerson.TryGetComponent(out DemoScientist scientist))
+            //pickingObject = null;
+        }
+        else if (pickingObject != null)
+        {
             {
-
+                inventory.AddNewItem(pickingObject.GetComponent<Interactable>().thisItem);
+                pickingObject.GetComponent<Interactable>().Interact(); //make it disappear
+                pickingObject = null;
             }
         }
-                pickingObject.GetComponent<DemoInteractable>().Interact();
-                pickingObject = null;
-
-
+        if (!anim)
+        {
+            return;
+        }
 
         if (Vector3.Distance(transform.position, stopPosition) > 0.1f)
         {
@@ -143,50 +142,21 @@ public class DemoPlayer : MonoBehaviour
         }
     }
 
-    void DoPuzzle()
-    {
-        Debug.Log("Trying puzzle with a " + holdingObjectName);
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.collider.TryGetComponent(out PuzzlePart part))
-            {
-                part.CheckObject(holdingObjectName);
-            }
-        }
-    }
-
-    public void SelectItem(string itemName) //con boton se activa, la funcion guarda el boton clicado
-    {
-        if (itemName != null && doingPuzzle)
-        {
-            holdingObjectName = itemName;
-        }
-
-    }
-
     void RayMouse()
     {
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.CompareTag("Interactable"))
-            {
-                if (hit.transform.TryGetComponent(out DemoInteractable interactable))
-                {
-                    goalPosition = interactable.moveToPosition.position;
-                    //maybe correct height, maybe not needed
-                    pickingObject = hit.collider.gameObject;
-                }
-            }
-            else if (hit.collider.CompareTag("Scientist"))
+            //if interactble
+
+
+            if (hit.collider.CompareTag("Scientist"))
             {
                 if (hit.collider.TryGetComponent(out DemoScientist scientist))
                 {
                     goalPosition = scientist.moveToPosition.position;
-                    //hight correction?
+                    //maybe correct height, maybe not needed
                     if (inventory.inventoryItems.Count > 0)
                     {
                         interactingPerson = scientist.gameObject;
@@ -198,7 +168,15 @@ public class DemoPlayer : MonoBehaviour
                     }
                 }
             }
-            else if (hit.collider.CompareTag("Portal"))
+            if (hit.collider.CompareTag("Interactable"))
+            {
+                if (hit.collider.TryGetComponent(out Interactable interactable))
+                {
+                    goalPosition = interactable.moveToPosition.position;
+                    pickingObject = interactable.gameObject;
+                }
+            }
+            else if (hit.collider.CompareTag("Portal")) //only for demo
             {
                 anim.Play("portalAnim");
                 dialogueRunner.Dialogue.Stop();
@@ -220,10 +198,43 @@ public class DemoPlayer : MonoBehaviour
             else if (hit.collider.CompareTag("Puzzle"))
             {
                 Debug.Log("Focusing on puzzle");
-                doingPuzzle= true;
+                doingPuzzle = true;
                 camController.ZoomOnPuzzle();
             }
         }
+    }
+
+    public void OpenInventory()
+    {
+        spritesInventory.SetActive(true);
+    }
+
+    public void CloseInventory()
+    {
+        spritesInventory.SetActive(false);
+    }
+
+    void DoPuzzle()
+    {
+        Debug.Log("Trying puzzle with a "); //+ holdingObjectName);
+        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.TryGetComponent(out PuzzlePart part))
+            {
+                //part.CheckObject(holdingObjectName);
+            }
+        }
+    }
+
+    public void SelectItem(string itemName) //con boton se activa, la funcion guarda el boton clicado
+    {
+        if (itemName != null && doingPuzzle)
+        {
+            //holdingObjectName = itemName;
+        }
+
     }
 
     public void Disappear()
@@ -231,7 +242,7 @@ public class DemoPlayer : MonoBehaviour
         players[0].gameObject.SetActive(false);
 
         gameObject.SetActive(false);
-    }
+    } //only for the demo
 }
 
 

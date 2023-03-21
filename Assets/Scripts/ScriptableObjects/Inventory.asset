@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   inventoryItems:
-  - Carbasso
-  - Patata
+  - {fileID: 11400000, guid: 698af259cf1867a4c8c6868db6fa2a7e, type: 2}

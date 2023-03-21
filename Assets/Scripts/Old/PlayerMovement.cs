@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     float inputZ;
     public float speed = 10f;
 
-    public ScriptableTest testscript;
+    //public ScriptableTest testscript;
 
     private void Update()
     {
@@ -17,11 +17,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3 (inputX, 0f, inputZ);
         transform.Translate(movement * speed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Debug.Log(testscript.number);
-            testscript.number++;
-            Debug.Log(testscript.number);
-        }
+
     }
 }
