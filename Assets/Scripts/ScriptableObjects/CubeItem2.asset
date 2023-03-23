@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12e19760463f5d8458637884c2387fb7, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 9c51701ba06a9b245a892d8fe5429331, type: 3}
+  m_Name: CubeItem2
   m_EditorClassIdentifier: 
-  inventoryItems:
-  - {fileID: 11400000, guid: 807b5f8d2e9de3546b945ff618124ec3, type: 2}
-  - {fileID: 11400000, guid: 698af259cf1867a4c8c6868db6fa2a7e, type: 2}
+  id: Cube2
+  spritePrefab: {fileID: 7940937160177515136, guid: f649fb6ac6671f4469c7db974078e8a1, type: 3}
+  inInventory: 0
+  thisItem: {fileID: 11400000}

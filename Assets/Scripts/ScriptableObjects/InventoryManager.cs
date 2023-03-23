@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    Transform spritesInventory;
+    [SerializeField] Transform spritesInventory;
     public static InventoryManager instance;
     [SerializeField] Inventory inventory;
+
+    public GameObject testObject;
+
+    List<GameObject> _inventoryItems= new List<GameObject>();
 
     private void Awake()
     {
@@ -14,21 +18,24 @@ public class InventoryManager : MonoBehaviour
         {
             instance = this;
         }
+        UpdateInventory();
     }
     public void UpdateInventory()
     {
-        for (int i = 0; i < inventory.inventoryItems.Count; i++)
+        for (int i = 0; i < inventory.inventoryItems.Count; i++) //por cada uno del inventario
         {
-            if (inventory.inventoryItems[i].inInventory)
+            if (inventory.inventoryItems[i].inInventory) //si el del inventario esta en el inventario
             {
-                if (inventory.inventoryItems[i].spriteInstance == null)
+                if (_inventoryItems.Count < inventory.inventoryItems.Count)
                 {
-                    inventory.inventoryItems[i].spriteInstance = Instantiate(inventory.inventoryItems[i].spritePrefab, spritesInventory);
+                    Debug.Log("adding new instance from prefab");
+                    GameObject newItem = Instantiate(inventory.inventoryItems[i].spritePrefab, spritesInventory);
+                    _inventoryItems.Add(newItem);
                 }
             }
             else
             {
-                Destroy(inventory.inventoryItems[i].spriteInstance);
+                Destroy(_inventoryItems[i]);
             }
         }
     }

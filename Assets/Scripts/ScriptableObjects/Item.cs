@@ -8,6 +8,16 @@ public class Item : ScriptableObject
 {
     public string id;
     public GameObject spritePrefab;
-    public GameObject spriteInstance; //dice type missmatch :'(
     public bool inInventory;
+    public Item thisItem;
+
+    public void SelectThisItem() //con boton se activa, la funcion guarda el boton clicado
+    {
+        Player[] players = FindObjectsOfType<Player>();
+        foreach (Player p in players)
+        {
+            p.SelectItem(thisItem);
+        }
+        
+    }
 }

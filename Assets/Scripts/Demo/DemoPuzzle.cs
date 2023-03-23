@@ -21,4 +21,6 @@ public class DemoPuzzle : MonoBehaviour
         Debug.Log("All parts succesfully mounted");
         finished = true;
     }
+
+
 }

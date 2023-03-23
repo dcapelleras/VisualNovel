@@ -11,6 +11,10 @@ TagManager:
   - Portal
   - Door
   - Puzzle
+  - Cable
+  - Cable1
+  - Cable2
+  - Cable3
   layers:
   - Default
   - TransparentFX

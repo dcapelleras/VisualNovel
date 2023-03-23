@@ -8,6 +8,7 @@ public class CamCinemachine : MonoBehaviour
 {
     public Cinemachine.CinemachineVirtualCamera cinemachine;
     public Cinemachine.CinemachineVirtualCamera cinemachine2;
+    public Cinemachine.CinemachineVirtualCamera cinemachinePuzzle;
 
     public Transform firstCam1Focus;
     public Transform firstCam2Focus;
@@ -61,13 +62,13 @@ public class CamCinemachine : MonoBehaviour
 
     public void ZoomOnPuzzle()
     {
-        cinemachine2.LookAt = puzzle;
-        cinemachine2.gameObject.transform.position = new Vector3(cinemachine2.gameObject.transform.position.x, cinemachine2.gameObject.transform.position.y, objectZoom);
+        cinemachinePuzzle.Priority = 12;
+        GameManager.instance.OpenInventory();
     }
 
     public void ZoomBackToRoom()
     {
-        cinemachine2.LookAt = firstCam2Focus;
-        cinemachine2.gameObject.transform.position = new Vector3(cinemachine2.gameObject.transform.position.x, cinemachine2.gameObject.transform.position.y, roomZoom);
+        cinemachinePuzzle.Priority = 9;
+        GameManager.instance.CloseInventory();
     }
 }

@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public bool doingPuzzle; 
     Vector3 goalPosition;
     public GameObject pickingObject;
+    public Item holdingObject;
     #endregion
 
     #region thisInstance
@@ -216,23 +217,23 @@ public class Player : MonoBehaviour
 
     void DoPuzzle()
     {
-        Debug.Log("Trying puzzle with a "); //+ holdingObjectName);
+        Debug.Log("Trying puzzle with a " + holdingObject.name);
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.TryGetComponent(out PuzzlePart part))
             {
-                //part.CheckObject(holdingObjectName);
+                part.CheckObject(holdingObject);
             }
         }
     }
 
-    public void SelectItem(string itemName) //con boton se activa, la funcion guarda el boton clicado
+    public void SelectItem(Item item) //con boton se activa, la funcion guarda el boton clicado
     {
-        if (itemName != null && doingPuzzle)
+        if (item != null && doingPuzzle)
         {
-            //holdingObjectName = itemName;
+            holdingObject = item;
         }
 
     }

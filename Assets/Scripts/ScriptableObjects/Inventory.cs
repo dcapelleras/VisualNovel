@@ -23,8 +23,8 @@ public class Inventory : ScriptableObject //base para crear inventarios que se p
     public void RemoveItem(Item item)
     {
         item.inInventory= false;
-        inventoryItems.Remove(item);
         InventoryManager.instance.UpdateInventory();
+        inventoryItems.Remove(item);
     }
 
 }

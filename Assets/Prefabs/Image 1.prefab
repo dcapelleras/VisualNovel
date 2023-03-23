@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9043971354983390722}
   - component: {fileID: 3879612511507221318}
   - component: {fileID: 5063928397623398664}
-  - component: {fileID: 6921551244941143687}
+  - component: {fileID: 2450282194400431415}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.91298866, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.306108, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6921551244941143687
+--- !u!114 &2450282194400431415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 807b5f8d2e9de3546b945ff618124ec3, type: 2}
+      - m_Target: {fileID: 11400000, guid: 698af259cf1867a4c8c6868db6fa2a7e, type: 2}
         m_TargetAssemblyTypeName: Item, Assembly-CSharp
         m_MethodName: SelectThisItem
         m_Mode: 1

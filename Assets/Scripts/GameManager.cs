@@ -9,6 +9,16 @@ public class GameManager : MonoBehaviour
     bool menuOpen;
     public GameObject inventory;
 
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -18,6 +28,7 @@ public class GameManager : MonoBehaviour
             {
                 Resume();
                 menuOpen = false;
+                CloseInventory();
             }
             else
             {
@@ -28,10 +39,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void OpenInventory()
+    {
+        inventory.SetActive(true);
+    }
+
+    public void CloseInventory()
+    {
+        Player[] players = FindObjectsOfType<Player>();
+        foreach (Player p in players)
+        {
+            p.holdingObject = null;
+        }
+        inventory.SetActive(false);
+    }
+
     public void Resume()
     {
         menuPausa.SetActive(false);
-        inventory.SetActive(false);
     }
 
     public void Exit() 

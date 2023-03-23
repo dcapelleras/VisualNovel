@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class PuzzlePart : MonoBehaviour
 {
-    public string objectReqName;
+    public Item objectReq;
     public bool partCorrect = false;
     public DemoPuzzle puzzle;
     public Inventory inventory;
     public Material correctMat;
-    public GameObject sprite;
 
-    public void CheckObject(string objName) //se llama desde player, comprueba si el objeto que esta sujetando el jugador es el indicado para esta Part
+
+    public void CheckObject(Item item) //se llama desde player, comprueba si el objeto que esta sujetando el jugador es el indicado para esta Part
     {
-        if (objName == objectReqName)
+        if (item == objectReq)
         {
             partCorrect = true;
             puzzle.CheckParts();
-            Debug.Log(objName + "Has been accepted");
-            sprite.SetActive(false);
+            Debug.Log(item.name + "Has been accepted");
+            inventory.RemoveItem(item);
             GetComponent<MeshRenderer>().material = correctMat;
+            InventoryManager.instance.UpdateInventory();
         }
     }
 }
