@@ -24,18 +24,18 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < inventory.inventoryItems.Count; i++) //por cada uno del inventario
         {
-            if (inventory.inventoryItems[i].inInventory) //si el del inventario esta en el inventario
+            if (true)//inventory.inventoryItems[i].inInventory) //si el del inventario esta en el inventario
             {
                 if (_inventoryItems.Count < inventory.inventoryItems.Count)
                 {
                     Debug.Log("adding new instance from prefab");
-                    GameObject newItem = Instantiate(inventory.inventoryItems[i].spritePrefab, spritesInventory);
-                    _inventoryItems.Add(newItem);
+                    //GameObject newItem = Instantiate(inventory.inventoryItems[i].icon, spritesInventory);
+                    //_inventoryItems.Add(newItem);
                 }
             }
             else
             {
-                Destroy(_inventoryItems[i]);
+                //Destroy(_inventoryItems[i]);
             }
         }
     }
