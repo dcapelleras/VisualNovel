@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ItemPickup : MonoBehaviour
+public class ItemPickup : MonoBehaviour //player script
 {
     GameObject pickingObj;
     Camera cam;
