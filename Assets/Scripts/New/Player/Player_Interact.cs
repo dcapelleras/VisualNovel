@@ -25,7 +25,7 @@ public class Player_Interact : MonoBehaviour
                     piece.TryPiece(selectedItem);
                 }
             }
-            selectedItem= null; //fix selected item
+            selectedItem= null; 
         }
     }
 }
