@@ -111,8 +111,8 @@ public class Player : MonoBehaviour
         else if (pickingObject != null)
         {
             {
-                inventory.AddNewItem(pickingObject.GetComponent<Interactable>().thisItem);
-                pickingObject.GetComponent<Interactable>().Interact(); //make it disappear
+                //inventory.AddNewItem(pickingObject.GetComponent<Interactable>().thisItem);
+                //pickingObject.GetComponent<Interactable>().Interact(); //make it disappear
                 pickingObject = null;
             }
         }
@@ -171,11 +171,11 @@ public class Player : MonoBehaviour
             }
             if (hit.collider.CompareTag("Interactable"))
             {
-                if (hit.collider.TryGetComponent(out Interactable interactable))
-                {
-                    goalPosition = interactable.moveToPosition.position;
-                    pickingObject = interactable.gameObject;
-                }
+               // if (hit.collider.TryGetComponent(out Interactable interactable))
+               // {
+                    //goalPosition = interactable.moveToPosition.position;
+                   // pickingObject = interactable.gameObject;
+                //}
             }
             else if (hit.collider.CompareTag("Portal")) //only for demo
             {

@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerDoor : MonoBehaviour
 {
     public Door crossingDoor;
+    PlayerNav nav;
+
+    private void Awake()
+    {
+        nav= GetComponent<PlayerNav>();
+    }
 
     private void Update()
     {
@@ -31,15 +37,19 @@ public class PlayerDoor : MonoBehaviour
             if (Vector3.Distance(crossingDoor.transform.position, transform.position) < 3f)
             {
                 CrossDoor();
+                RoomManager.instance.ChangeLoadingScreen();
             }
         }
     }
 
     void CrossDoor()
     {
+        CamManager.instance.MoveToCam(crossingDoor.doorIndex);
         Debug.Log("Crossing door");
         //cam manager move camera and show loading screen
-        transform.position = crossingDoor.spawnPosition.position; //has to be the place of the connecting door
+        //transform.position = crossingDoor.spawnPosition.position; //has to be the place of the connecting door
+        nav.agent.SetDestination(crossingDoor.spawnPosition.position);
         crossingDoor = null;
+
     }
 }

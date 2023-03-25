@@ -63,12 +63,12 @@ public class CamCinemachine : MonoBehaviour
     public void ZoomOnPuzzle()
     {
         cinemachinePuzzle.Priority = 12;
-        GameManager.instance.OpenInventory();
+        //GameManager.instance.OpenInventory();
     }
 
     public void ZoomBackToRoom()
     {
         cinemachinePuzzle.Priority = 9;
-        GameManager.instance.CloseInventory();
+        //GameManager.instance.CloseInventory();
     }
 }

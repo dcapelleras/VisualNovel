@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class ItemPickup : MonoBehaviour //player script
 {
-    GameObject pickingObj;
+    public GameObject pickingObj;
     Camera cam;
 
     private void Awake()
@@ -41,7 +41,7 @@ public class ItemPickup : MonoBehaviour //player script
 
         if (pickingObj != null)
         {
-            if (Vector3.Distance(transform.position, pickingObj.transform.position) < 2f)
+            if (Vector3.Distance(transform.position, pickingObj.transform.position) < 3f)
             {
                 
                 PickUp(pickingObj.GetComponent<ItemController>().item, pickingObj);

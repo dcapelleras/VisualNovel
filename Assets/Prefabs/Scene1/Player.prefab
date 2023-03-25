@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4739643666651909629}
   - component: {fileID: 4739643666651909618}
   - component: {fileID: 4739643666651909619}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4739643666651909628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.44, z: 0}
-  m_LocalScale: {x: 0.2045, y: 0.2045, z: 0.2045}
+  m_LocalScale: {x: -0.2045, y: 0.2045, z: 0.2045}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4739643668107048564}
@@ -121,7 +121,8 @@ GameObject:
   - component: {fileID: 4739643668107048563}
   - component: {fileID: 4739643668107048565}
   - component: {fileID: 4739643668107048522}
-  m_Layer: 0
+  - component: {fileID: 486679266}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4739643668107048560}
+  anim: {fileID: 4739643666651909619}
 --- !u!114 &4739643668107048565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,3 +270,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedItem: {fileID: 0}
+--- !u!114 &486679266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4739643668107048562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2326a0f506ee149ad05ac7e8f8f172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossingDoor: {fileID: 0}

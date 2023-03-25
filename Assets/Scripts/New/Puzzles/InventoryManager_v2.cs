@@ -34,14 +34,19 @@ public class InventoryManager_v2 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (InventoryPanel.activeInHierarchy)
-            {
-                InventoryPanel.SetActive(false);
-                return;
-            }
-            InventoryPanel.SetActive(true);
-            ListItems();
+            OpenInventory();
         }
+    }
+
+    public void OpenInventory()
+    {
+        if (InventoryPanel.activeInHierarchy)
+        {
+            InventoryPanel.SetActive(false);
+            return;
+        }
+        InventoryPanel.SetActive(true);
+        ListItems();
     }
 
     public void Add(Item item)

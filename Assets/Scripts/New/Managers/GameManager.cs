@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public GameObject menuPausa;
     public GameObject exit;
     bool menuOpen;
-    public GameObject inventory;
 
     public static GameManager instance;
 
@@ -28,39 +27,29 @@ public class GameManager : MonoBehaviour
             {
                 Resume();
                 menuOpen = false;
-                CloseInventory();
             }
             else
             {
-                inventory.SetActive(true);
                 menuPausa.SetActive(true);
                 menuOpen = true;
             }
         }
     }
 
-    public void OpenInventory()
-    {
-        inventory.SetActive(true);
-    }
-
-    public void CloseInventory()
-    {
-        Player[] players = FindObjectsOfType<Player>();
-        foreach (Player p in players)
-        {
-            p.holdingObject = null;
-        }
-        inventory.SetActive(false);
-    }
-
     public void Resume()
     {
         menuPausa.SetActive(false);
+        exit.SetActive(false);
     }
 
     public void Exit() 
     { 
         exit.SetActive(true);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("No puedes huir MWAHAHAHA... porque en unity no funciona el quit =)");
+        Application.Quit();
     }
 }

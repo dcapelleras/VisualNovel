@@ -36,11 +36,13 @@ public class PlayerNav : MonoBehaviour //player
                 agent.SetDestination(hit.point);
                 if ((transform.position.x - hit.point.x) < -0.1f)
                 {
+                    anim.SetTrigger("Right");
                     //anim turn left
                     //anim walk
                 }
                 else if ((transform.position.x - hit.point.x) > 0.1f)
                 {
+                    anim.SetTrigger("Left");
                     //anim turn right
                     //anim walk
                 }
