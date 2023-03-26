@@ -2,35 +2,40 @@
 tags:
 ---
 <<Movement 0>>
-Otro dia igual de aburrido en la oficina... 
-Vamos a descansar un rato viendo vídeos.
+Sam: Otro dia igual de aburrido en la oficina... 
+Sam: Vamos a descansar un rato viendo vídeos.
 (Navegando por internet)
-Como... arreglar... la pantalla... del teléfono...
-How to basic, parece legítimo...
+Sam: Como... arreglar... la pantalla... del teléfono...
+Sam: How to basic, parece legítimo...
 ... No creo que esto vaya a funcionar...
-En fin... de vuelta al trabajo que la subscripción de Netflix no se paga sola!
+Sam: En fin... de vuelta al trabajo que la subscripción de Netflix no se paga sola!
 (Se oye una explosión en la sala contígua)
-QUÉ CO... CARÁMBANOS!!!
+Sam: QUÉ CO... CARÁMBANOS!!!
 <<Movement 1>>
 ===
 
 title: EnteringRoom
 ---
-(Científica) -Uff que desastroso más aterrijaze...
-(Parece que hay algo en la pared...)
+Científica: -Uff que desastroso más aterrijaze...
+Voz interior: Parece que hay algo en la pared...
 ===
 
 title: FirstPuzzle
 ---
-(Parece un mecanísmo, aunque ha perdido un par de piezas, ¿que pasará si las encuentro y las coloco? Seguramente nada pero quien sabe...)
+Sam: Parece un mecanísmo, aunque ha perdido un par de piezas, ¿que pasará si las encuentro y las coloco? (click derecho para volver a ver toda la sala)
+===
+
+title: FirstPuzzleReminder
+---
+Voz interior: Hay que buscar las piezas que faltan. (el inventario se abre con Esc, selecciona el objeto que quieras usar y luego dónde usarlo)
 ===
 
 title: EndGame
 ---
 <<Movement 0>>
-(Apareces en una sala desconocida, ¿te has teletransportado?)
-(Vaya que sala más bonita, parece el lugar ideal para retirarse y terminar la aventura)
-Esto es todo por ahora, espero que os haya gustado.
-¿Os ha gustado? ¿Holaa? ¡¡Decid algo!! ¿Qué intentáis decir con este silencio?  ¿Que es lo que falla? ¡Es la última sala, lo sabía! ¡Quien querría vivir allí! Faltan como mínimo 2 cajas más...
-Pues nada, fin del blockout del nivel 0.
+Narrador: Apareces en una sala desconocida, ¿te has teletransportado?
+Voz interior: Vaya que sala más bonita, parece el lugar ideal para retirarse y terminar la aventura
+Narrador: Esto es todo por ahora, espero que os haya gustado.
+Narrador: ¿Os ha gustado? ¿Holaa? ¡¡Decid algo!! ¿Qué intentáis decir con este silencio?  ¿Que es lo que falla? ¡Es la última sala, lo sabía! ¡Quien querría vivir allí! Faltan como mínimo 2 cajas más...
+Fin: Pues nada, fin del blockout del nivel 0.
 ===

@@ -9,6 +9,7 @@ public class PlayerPuzzle : MonoBehaviour
     int previousCamUsed;
     bool doingPuzzle;
     DialogueRunner dialogueRunner;
+    bool firstPuzzleRead;
 
     private void Awake()
     {
@@ -27,13 +28,25 @@ public class PlayerPuzzle : MonoBehaviour
                 {
                     if (hit.collider.TryGetComponent(out PuzzleDetector puzzle))
                     {
-                        Debug.Log("A puzzle was clicked");
-                        doingPuzzle= true;
-                        CamManager.instance.MoveToCam(puzzle.puzzleIndex);
-                        previousCamUsed = puzzle.puzzleIndex - 1; //puzzle will always have to have the next camera from the room
-                        dialogueRunner.Dialogue.Stop();
-                        dialogueRunner.StartDialogue("FirstPuzzle");
+                        if (!firstPuzzleRead)
+                        {
+                            firstPuzzleRead = true;
+                            doingPuzzle = true;
+                            CamManager.instance.MoveToCam(puzzle.puzzleIndex);
+                            previousCamUsed = puzzle.puzzleIndex - 1; //puzzle will always have to have the next camera from the room
+                            dialogueRunner.Dialogue.Stop();
+                            dialogueRunner.StartDialogue("FirstPuzzle");
+                        }
+                        else
+                        {
+                            doingPuzzle = true;
+                            CamManager.instance.MoveToCam(puzzle.puzzleIndex);
+                            previousCamUsed = puzzle.puzzleIndex - 1; //puzzle will always have to have the next camera from the room
+                            dialogueRunner.Dialogue.Stop();
+                            dialogueRunner.StartDialogue("FirstPuzzleReminder");
+                        }
                     }
+                        
                 }
             }
         }
