@@ -6,6 +6,7 @@ public class PuzzlePiece : MonoBehaviour
 {
     [SerializeField] Material correctMat;
     public Item correctItem;
+    [SerializeField] PuzzleManager puzzle;
 
     public void TryPiece(Item item)
     {
@@ -14,6 +15,7 @@ public class PuzzlePiece : MonoBehaviour
             InventoryManager_v2.instance.Remove(item);
             InventoryManager_v2.instance.ListItems();
             transform.GetComponent<Renderer>().material = correctMat;
+            puzzle.CheckParts();
         }
     }
 }

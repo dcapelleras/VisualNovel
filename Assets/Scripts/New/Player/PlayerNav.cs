@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 using UnityEngine.AI;
 using Yarn.Unity;
@@ -13,6 +14,8 @@ public class PlayerNav : MonoBehaviour //player
     [SerializeField] Animator anim;
     #endregion
     bool canMove;
+    bool gameEnded = false;
+    [SerializeField] Transform endgameTransform;
 
     private void Awake()
     {
@@ -23,7 +26,7 @@ public class PlayerNav : MonoBehaviour //player
 
     private void Update()
     {
-        if (!canMove)
+        if (!canMove || gameEnded)
         {
             return;
         }
@@ -62,5 +65,14 @@ public class PlayerNav : MonoBehaviour //player
             return;
         }
         canMove = true;
+    }
+
+    public void EndGame()
+    {
+        gameEnded= true;
+        agent.enabled = false;
+        transform.position = endgameTransform.position;
+        CamManager.instance.MoveToCam(3);
+        RoomManager.instance.ChangeLoadingScreen(true);
     }
 }
