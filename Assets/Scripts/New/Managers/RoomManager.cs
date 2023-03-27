@@ -15,6 +15,8 @@ public class RoomManager : MonoBehaviour
 
     bool firstTimeEnteringRoom = true;
 
+    public bool changingRoom = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -26,7 +28,7 @@ public class RoomManager : MonoBehaviour
 
     public void ChangeLoadingScreen(bool isEndgame)
     {
-        dialogueRunner.Dialogue.Stop();
+        changingRoom = true;
         loadingScreen.SetActive(true);
         StartCoroutine(UnloadLoadingScreen(isEndgame));
     }
@@ -34,7 +36,7 @@ public class RoomManager : MonoBehaviour
     IEnumerator UnloadLoadingScreen(bool isEndgame)
     {
         yield return new WaitForSeconds(loadingScreenTime);
-
+        changingRoom=false;
         loadingScreen.SetActive(false);
         if (isEndgame)
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 35127429}
   - component: {fileID: 35127428}
   - component: {fileID: 35127427}
+  - component: {fileID: 35127431}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -495,7 +496,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1f973da9324ccd542b62c0b4df190d8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -525,6 +526,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35127425}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &35127431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35127425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f1370fd5b52c842a4649d2d94bda03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMat: {fileID: 2100000, guid: 1f973da9324ccd542b62c0b4df190d8c, type: 2}
+  highlightMat: {fileID: 2100000, guid: c4b88dea9175ec34abea5786b443397d, type: 2}
 --- !u!1 &37748445
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +678,7 @@ GameObject:
   - component: {fileID: 68154063}
   - component: {fileID: 68154062}
   - component: {fileID: 68154061}
+  - component: {fileID: 68154065}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -733,7 +749,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1f973da9324ccd542b62c0b4df190d8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -763,6 +779,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68154059}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &68154065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68154059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f1370fd5b52c842a4649d2d94bda03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMat: {fileID: 2100000, guid: 1f973da9324ccd542b62c0b4df190d8c, type: 2}
+  highlightMat: {fileID: 2100000, guid: c4b88dea9175ec34abea5786b443397d, type: 2}
 --- !u!1 &83841938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2707,6 +2737,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e373710f8eece274cbb80ae90ddfa4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &486679285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486679257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44846fbf5e9755b4d95d0ac679dc0bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &496822334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4256,6 +4298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1779849964}
   loadingScreenTime: 5
+  changingRoom: 0
 --- !u!114 &870906283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7269,7 +7312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+  m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0.4745098}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8368,6 +8411,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 157dd0abe9aa6ce43bb485d553fa369b, type: 3}
       propertyPath: m_Name
       value: Dancing Twerk
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 157dd0abe9aa6ce43bb485d553fa369b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 157dd0abe9aa6ce43bb485d553fa369b, type: 3}
