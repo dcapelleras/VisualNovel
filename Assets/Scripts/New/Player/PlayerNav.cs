@@ -21,6 +21,7 @@ public class PlayerNav : MonoBehaviour //player
         cam = Camera.main;
         dialogueRunner = FindObjectOfType<DialogueRunner>();
         dialogueRunner.AddCommandHandler<int>("Movement", AllowMovement);
+        dialogueRunner.AddCommandHandler<int>("FinishGame", EndGame);
     }
 
     private void Update()
@@ -66,12 +67,19 @@ public class PlayerNav : MonoBehaviour //player
         canMove = true;
     }
 
-    public void EndGame()
+    public void EndGame(int i)
     {
-        gameEnded= true;
+        AllowMovement(0);
+        gameEnded = true;
         agent.enabled = false;
         transform.position = endgameTransform.position;
         CamManager.instance.MoveToCam(3);
         RoomManager.instance.ChangeLoadingScreen(true);
+    }
+
+    public void TriggerEndGame(int i)
+    {
+        dialogueRunner.Dialogue.Stop();
+        dialogueRunner.StartDialogue("TerminateGame");
     }
 }

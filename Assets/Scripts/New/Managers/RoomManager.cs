@@ -28,20 +28,21 @@ public class RoomManager : MonoBehaviour
 
     public void ChangeLoadingScreen(bool isEndgame)
     {
+        StartCoroutine(UnloadLoadingScreen(isEndgame));
+        return; //activate or deactivate loading screen
         changingRoom = true;
         loadingScreen.SetActive(true);
-        StartCoroutine(UnloadLoadingScreen(isEndgame));
     }
 
     IEnumerator UnloadLoadingScreen(bool isEndgame)
     {
-        yield return new WaitForSeconds(loadingScreenTime);
-        changingRoom=false;
+        yield return new WaitForSeconds(1f); //yield return new WaitForSeconds(loadingScreenTime); 
+        changingRoom =false;
         loadingScreen.SetActive(false);
         if (isEndgame)
         {
-            dialogueRunner.Dialogue.Stop();
-            dialogueRunner.StartDialogue("EndGame");
+            //dialogueRunner.Dialogue.Stop();
+            //dialogueRunner.StartDialogue("EndGame");
         }
         else if (firstTimeEnteringRoom)
         {

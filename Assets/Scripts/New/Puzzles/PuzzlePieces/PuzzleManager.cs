@@ -12,10 +12,11 @@ public class PuzzleManager : MonoBehaviour
         partsCompleted++;
         if (partsCompleted == partsToComplete)
         {
+            partsCompleted = 0;
             //puzzle completed
             //teleport to room and trigger endgame dialogue
             PlayerNav player = FindObjectOfType<PlayerNav>();
-            player.EndGame();
+            player.TriggerEndGame(1);
         }
     }
 }
