@@ -459,8 +459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1370fd5b52c842a4649d2d94bda03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMat: {fileID: 2100000, guid: 1f973da9324ccd542b62c0b4df190d8c, type: 2}
-  highlightMat: {fileID: 2100000, guid: c4b88dea9175ec34abea5786b443397d, type: 2}
+  normalMat: {fileID: 2100000, guid: fa4d42ba3b735af4cbfeb60cd9eac73d, type: 2}
+  highlightMat: {fileID: 2100000, guid: 1a0ede43d2e4a2b4396066ec56a35eb3, type: 2}
 --- !u!1 &37748445
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,8 +712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f1370fd5b52c842a4649d2d94bda03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMat: {fileID: 2100000, guid: 1f973da9324ccd542b62c0b4df190d8c, type: 2}
-  highlightMat: {fileID: 2100000, guid: c4b88dea9175ec34abea5786b443397d, type: 2}
+  normalMat: {fileID: 2100000, guid: fa4d42ba3b735af4cbfeb60cd9eac73d, type: 2}
+  highlightMat: {fileID: 2100000, guid: 1a0ede43d2e4a2b4396066ec56a35eb3, type: 2}
 --- !u!1 &83841938
 GameObject:
   m_ObjectHideFlags: 0
