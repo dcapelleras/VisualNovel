@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +51,6 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("No puedes huir MWAHAHAHA... porque en unity no funciona el quit =)");
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }

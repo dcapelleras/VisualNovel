@@ -6,6 +6,7 @@ public class PlayerCable : MonoBehaviour
 {
     public GameObject holdingCable;
     [SerializeField] Vector3 offset = new Vector3(0, 1, -1);
+    public LayerMask screwLayer;
 
     private void Update()
     {
@@ -13,7 +14,15 @@ public class PlayerCable : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            transform.position = hit.point;
+            if (holdingCable!= null)
+            {
+                RaycastHit hit2;
+                if (Physics.Raycast(ray, out hit2, ~screwLayer))
+                {
+                    holdingCable.transform.position = hit2.point - offset;
+                }
+            }
+
             if (Input.GetMouseButton(0))
             {
                 if (hit.collider.CompareTag("Cable"))
